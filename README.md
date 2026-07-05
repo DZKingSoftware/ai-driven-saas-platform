@@ -1,291 +1,279 @@
+# 🚀 AI-Driven Enterprise Automation SaaS Platform
 
-# 🚀 AI SaaS Platform
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-green.svg?style=for-the-badge)](https://nodejs.org)
+[![TypeScript](https://img.shields.io/badge/typescript-5.3-blue.svg?style=for-the-badge)](https://www.typescriptlang.org)
+[![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)](https://nestjs.com/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Stripe](https://img.shields.io/badge/Stripe-635BFF?style=for-the-badge&logo=stripe&logoColor=white)](https://stripe.com/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 
-> AI-Driven Enterprise Automation Platform - OpenAI (GPT-4) va Google Gemini Pro orqali bizneslar uchun kontent yaratish, ma'lumotlarni tahlil qilish va oylik obuna asosida ishlaydigan SaaS tizim.
+A modern, high-performance, full-stack B2B SaaS application featuring automated content generation powered by **OpenAI (GPT-4)** and **Google Gemini Pro**. Equipped with a credits system, secure recurring Stripe subscriptions, robust JWT-based authentication, rate-limiting, and premium frontend animations.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-green.svg)
-![TypeScript](https://img.shields.io/badge/typescript-5.3-blue.svg)
+---
 
-## ✨ Xususiyatlar
+## 🔍 Features & Architecture
 
-### AI Kontent Yaratish
-- **GPT-4** va **Gemini Pro** modellarini qo'llab-quvvatlaydi
-- 6+ tayyor shablon (SEO Blog, Social Media, Email Marketing, va boshqalar)
-- PRO foydalanuvchilar uchun maxsus shablonlar
+### 🧠 Advanced AI Generation Engine
+- **Multi-Model Support**: Direct integration with **OpenAI (GPT-4)** and **Google Gemini Pro** APIs.
+- **Dynamic Content Templates**: Over 6 pre-configured prompt templates tailored for business needs (e.g., SEO Blogs, Social Media Copy, Email Marketing Campaigns).
+- **Pro Templates**: Premium templates restricted to active subscription plans.
 
-### Token Credit Tizimi
-- Kunlik **10 ta bepul token**
-- Har bir generatsiya uchun token sarflanadi
-- PRO obunachilar uchun ko'proq token
+### 🪙 Token Credit System
+- **Daily Grant**: Free tier users receive **10 free tokens** automatically every day.
+- **Consumption Matrix**: Tokens are deducted per query depending on the complexity of the selected AI model and template.
+- **Purchase & Topups**: Built-in logic to allow credit expansions via Stripe payments.
 
-### To'lov Tizimi
-- **Stripe** integratsiyasi
-- 3 ta tarif reja: Starter, Pro, Enterprise
-- Avtomatik webhook orqali status yangilash
+### 💳 Stripe Subscription Integration
+- **Tiered Subscriptions**: 3 pricing tiers available (Starter, Pro, Enterprise) configured via Stripe plans.
+- **Stripe Webhooks**: Asynchronous subscription lifecycle syncing (activation, renewals, cancellations) mapped securely using Stripe Webhooks.
+- **Customer Portal**: Self-serve billing portal for subscription upgrades/downgrades/cancellations.
 
-### Xavfsizlik
-- JWT autentifikatsiya
-- Rate Limiting (ThrottlerModule)
-- Parol hashlash (bcrypt)
+### 🛡️ Enterprise-Grade Security
+- **Authentication & Sessions**: Dual JWT approach (access + refresh tokens) coupled with secure password hashing via `bcrypt`.
+- **API Guardrails**: Strict endpoint protection utilizing NestJS interceptors, guards, and validators.
+- **Rate Limiting**: Throttler protection against brute-force attempts and AI model endpoint abuse.
 
-## 🛠️ Texnologiyalar
+---
 
-### Backend
-<div align="center">
+## 🛠️ Technology Stack
 
-| Texnologiya | Maqsad |
-|-------------|--------|
-| Nest.js | Backend framework |
-| MongoDB + Mongoose | Database |
-| OpenAI SDK | GPT-4 integratsiya |
-| @google/generative-ai | Gemini Pro integratsiya |
-| Stripe SDK | To'lov tizimi |
-| JWT + bcrypt | Autentifikatsiya |
+### Backend Services
+- **Framework**: [NestJS](https://nestjs.com/) (TypeScript-first Node.js framework)
+- **Database ORM**: MongoDB using Mongoose ODM
+- **AI SDKs**: Official `@google/generative-ai` & `openai` clients
+- **Payments**: Stripe Node.js SDK
+- **Security**: Passport.js (JWT Strategy), bcrypt, and NestJS Throttler
 
-</div>
+### Frontend Application
+- **Framework**: React 18 + Vite (TypeScript/JavaScript SPA)
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion for premium micro-interactions and transitions
+- **Routing**: React Router DOM (v6)
+- **State & Network**: Axios with interceptors for automatic JWT header attachments
 
-### Frontend
-<div align="center">
+---
 
-| Texnologiya | Maqsad |
-|-------------|--------|
-| React 18 + Vite | UI framework |
-| Tailwind CSS | Styling |
-| Framer Motion | Animations |
-| React Router | Routing |
-| Axios | HTTP client |
+## 📦 Installation & Setup
 
-</div>
+### Prerequisites
+- **Node.js**: `v18.0.0` or higher
+- **MongoDB**: Local community edition or MongoDB Atlas URI
+- **Stripe CLI**: Recommended for local webhook development
 
-## 📦 O'rnatish
-
-### Talablar
-- Node.js >= 18.0.0
-- MongoDB (local yoki Atlas)
-- npm yoki yarn
-
-### Clone qilish
-
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/yourusername/ai-saas-platform.git
 cd ai-saas-platform
 ```
 
-### Backend sozlanishi
-
+### 2. Configure Backend Service
+Navigate to the `backend` folder, install dependencies, and set up your environment variables:
 ```bash
 cd backend
 npm install
 ```
 
-`.env` faylini yarating:
-
+Create a `.env` file in the `backend` directory using the template below:
 ```env
-# Server
+# Server Configuration
 PORT=4000
 FRONTEND_URL=http://localhost:5173
 
-# Database
+# Database Connection
 MONGODB_URI=mongodb://localhost:27017/ai-saas
 
-# JWT
+# JSON Web Token Secret
 JWT_SECRET=your-super-secret-jwt-key-change-in-production
 
-# AI Providers
+# AI Provider API Keys
 OPENAI_API_KEY=sk-your-openai-api-key
 GEMINI_API_KEY=your-gemini-api-key
 
-# Stripe
+# Stripe Payment Configs
 STRIPE_SECRET_KEY=sk_test_your-stripe-secret-key
 STRIPE_WEBHOOK_SECRET=whsec_your-webhook-secret
 ```
 
-### Frontend sozlanishi
-
+### 3. Configure Frontend Application
+Navigate to the `frontend` directory and install dependencies:
 ```bash
-cd frontend
+cd ../frontend
 npm install
 ```
 
-### Ishga tushirish
+### 4. Run the Platform Locally
+Open two terminal windows to start both services concurrently:
 
+**Start Backend API Server (Terminal 1)**
 ```bash
-# Terminal 1 - Backend
 cd backend
 npm run start:dev
+```
+*API will run at:* `http://localhost:4000`
 
-# Terminal 2 - Frontend
+**Start React Frontend (Terminal 2)**
+```bash
 cd frontend
 npm run dev
 ```
+*Webapp will run at:* `http://localhost:5173`
 
-Brauzerda: [http://localhost:5173](http://localhost:5173)
+---
 
-## 📁 Loyiha Tuzilishi
+## 📁 Directory Structure
 
 ```
 ai-saas-platform/
 ├── backend/
 │   ├── src/
-│   │   ├── main.ts                    # Nest.js entry point
-│   │   ├── app.module.ts              # Main module
+│   │   ├── main.ts                    # NestJS Entry Point
+│   │   ├── app.module.ts              # Root Module
 │   │   └── modules/
-│   │       ├── auth/                  # Autentifikatsiya
-│   │       │   ├── auth.module.ts
-│   │       │   ├── auth.service.ts
-│   │       │   ├── auth.controller.ts
-│   │       │   ├── dto/
-│   │       │   ├── strategies/
-│   │       │   └── guards/
-│   │       ├── users/                 # Foydalanuvchilar
-│   │       ├── ai/                    # AI generatsiya
-│   │       ├── token/                 # Token tizimi
-│   │       └── subscription/          # Stripe to'lov
+│   │       ├── auth/                  # Authentication Module (JWT, Passport)
+│   │       ├── users/                 # User Accounts & Profiles
+│   │       ├── ai/                    # AI Integration (OpenAI & Gemini)
+│   │       ├── token/                 # Token Credits Ledger
+│   │       └── subscription/          # Stripe Billing & Webhook Endpoints
 │   └── package.json
 │
 ├── frontend/
 │   ├── src/
-│   │   ├── main.jsx                   # React entry point
-│   │   ├── App.jsx                    # Main component
-│   │   ├── index.css                  # Tailwind styles
-│   │   ├── pages/
-│   │   │   ├── Landing.jsx            # Bosh sahifa
-│   │   │   ├── Pricing.jsx            # Narxlar sahifasi
-│   │   │   ├── Dashboard.jsx          # AI Playground
+│   │   ├── main.jsx                   # React Entry Point
+│   │   ├── App.jsx                    # Root App Component
+│   │   ├── index.css                  # Global Tailwind Styles
+│   │   ├── pages/                     # Routed View Components
+│   │   │   ├── Landing.jsx            # Dynamic Landing Page
+│   │   │   ├── Pricing.jsx            # Subscription Plans
+│   │   │   ├── Dashboard.jsx          # Interactive AI Playground
 │   │   │   ├── Login.jsx
 │   │   │   └── Register.jsx
-│   │   ├── components/
+│   │   ├── components/                # Reusable UI Components
 │   │   │   ├── Layout.jsx
 │   │   │   └── ProtectedRoute.jsx
-│   │   ├── context/
+│   │   ├── context/                   # Context Stores (Auth, Alerts)
 │   │   │   ├── AuthContext.jsx
 │   │   │   └── ToastContext.jsx
 │   │   └── lib/
-│   │       └── api.js
+│   │       └── api.js                 # Axios Base Configurations
 │   └── package.json
 │
 └── README.md
 ```
 
-## 🔌 API Endpointlar
+---
 
-### Auth
-| Method | Endpoint | Tavsif |
-|--------|----------|--------|
-| POST | `/api/auth/register` | Ro'yxatdan o'tish |
-| POST | `/api/auth/login` | Kirish |
+## 🔌 API Endpoints Reference
+
+### Authentication
+| Method | Endpoint | Description |
+|:---|:---|:---|
+| `POST` | `/api/auth/register` | Register a new user account |
+| `POST` | `/api/auth/login` | Log in and receive JWT token |
 
 ### Users
-| Method | Endpoint | Tavsif |
-|--------|----------|--------|
-| GET | `/api/users/me` | Profil ma'lumotlari |
-| GET | `/api/users/stats` | Statistika |
+| Method | Endpoint | Description |
+|:---|:---|:---|
+| `GET` | `/api/users/me` | Fetch authenticated user profile details |
+| `GET` | `/api/users/stats` | Retrieve user interaction and token statistics |
 
-### AI
-| Method | Endpoint | Tavsif |
-|--------|----------|--------|
-| GET | `/api/ai/templates` | Shablonlar ro'yxati |
-| POST | `/api/ai/generate` | Kontent yaratish |
-| GET | `/api/ai/generations` | Tarix |
+### AI Generation
+| Method | Endpoint | Description |
+|:---|:---|:---|
+| `GET` | `/api/ai/templates` | Retrieve list of all available templates |
+| `POST` | `/api/ai/generate` | Generate text utilizing OpenAI or Gemini Pro |
+| `GET` | `/api/ai/generations` | Get past generation logs for the current user |
 
-### Token
-| Method | Endpoint | Tavsif |
-|--------|----------|--------|
-| GET | `/api/token/balance` | Balansni ko'rish |
+### Token Operations
+| Method | Endpoint | Description |
+|:---|:---|:---|
+| `GET` | `/api/token/balance` | Query current user token credit balance |
 
-### Subscription
-| Method | Endpoint | Tavsif |
-|--------|----------|--------|
-| GET | `/api/subscription/plans` | Tarif rejalar |
-| POST | `/api/subscription/checkout` | To'lov sahifasi |
-| POST | `/api/subscription/cancel` | Bekor qilish |
+### Stripe Subscription & Billing
+| Method | Endpoint | Description |
+|:---|:---|:---|
+| `GET` | `/api/subscription/plans` | Fetch active pricing & subscription plans |
+| `POST` | `/api/subscription/checkout` | Initiate Stripe Checkout session |
+| `POST` | `/api/subscription/cancel` | Cancel an active subscription plan |
 
-## 💳 Narxlar
+---
 
-| Plan | Narx | Token | Xususiyatlar |
-|------|------|-------|--------------|
-| **Free** | $0 | 10/kun | Basic shablonlar |
-| **Starter** | $29/oy | 100/oy | + Priority support |
-| **Pro** | $79/oy | 500/oy | + API access, Analytics |
-| **Enterprise** | $199/oy | 2000/oy | + Custom templates, Team |
+## 💳 Pricing & Subscriptions Matrix
 
-## 📝 Shablonlar
+| Plan Tier | Price | Tokens / Month | Core Features |
+|:---|:---:|:---:|:---|
+| **Free** | $0 | 10 / Daily | Access to Basic Templates |
+| **Starter** | $29 / mo | 100 | Priority Customer Support |
+| **Pro** | $79 / mo | 500 | API Access, Usage Analytics |
+| **Enterprise** | $199 / mo | 2,000 | Dedicated Templates, Team Access |
 
-| Shablon | Kategoriya | Token | Daraja |
-|---------|------------|-------|--------|
+---
+
+## 📝 Available Prompt Templates
+
+| Template Name | Domain | Token Cost | Tier Requirement |
+|:---|:---|:---:|:---|
 | SEO Blog Post | Content | 500 | Free |
-| Social Media | Marketing | 300 | Free |
+| Social Media Copy | Marketing | 300 | Free |
 | Email Marketing | Marketing | 400 | Free |
 | Product Description | E-commerce | 350 | **PRO** |
-| Video Script | Video | 600 | **PRO** |
+| Video Script | Video Production | 600 | **PRO** |
 | Data Analysis | Analytics | 800 | **PRO** |
 
-## 🔒 Muhim Eslatmalar
+---
 
-1. **API Kalitlar** - `OPENAI_API_KEY` va `GEMINI_API_KEY` ni `.env` faylida saqlang
-2. **Stripe Webhook** - Local test uchun Stripe CLI ishlatish tavsiya etiladi:
+## 🔒 Crucial Development Notes
+
+1. **API Key Safety**: Never check `.env` into git. Make sure `.gitignore` is correctly initialized in both frontend and backend directories.
+2. **Local Webhook Testing**: To receive Stripe subscription lifecycle updates locally, run the Stripe CLI forwarder:
    ```bash
    stripe listen --forward-to localhost:4000/api/subscription/webhook
    ```
-3. **JWT Secret** - Production uchun kuchli secret ishlatilsin
+3. **JWT Configuration**: Always configure a strong, random key for `JWT_SECRET` in a production environment.
 
-## 🧪 Test qilish
+---
 
+## 🧪 Testing & Production Build
+
+### Automated Quality Checks
 ```bash
-# Backend test
+# Run unit and integration tests (Backend)
 cd backend
 npm run test
-
-# Frontend build
-cd frontend
-npm run build
 ```
 
-## 📈 Production Deploy
-
-### Environment o'zgartirish
-
-```env
-NODE_ENV=production
-MONGODB_URI=mongodb+srv://...
-JWT_SECRET=production-secret
-```
-
-### Build
-
+### Production Bundling
 ```bash
-# Backend
+# Production build for Backend NestJS application
 cd backend
 npm run build
 npm run start:prod
 
-# Frontend
-cd frontend
+# Production static build for Frontend React application
+cd ../frontend
 npm run build
 ```
 
-## 🤝 Qo'shish
+---
 
-1. Fork qiling
-2. Branch yarating (`git checkout -b feature/amazing`)
-3. Commit qiling (`git commit -m 'Add amazing feature'`)
-4. Push qiling (`git push origin feature/amazing`)
-5. Pull Request oching
+## 🤝 Contribution Guidelines
+
+1. **Fork** the project repository.
+2. Create a clean feature branch: `git checkout -b feature/amazing-feature`.
+3. Commit your changes: `git commit -m 'feat: Add some amazing feature'`.
+4. Push to the branch: `git push origin feature/amazing-feature`.
+5. Open a **Pull Request** detailing your changes.
+
+---
 
 ## 📄 License
 
-MIT License - batafsil [LICENSE](LICENSE) faylini ko'ring.
-
-## 👨‍💻 Author
-
-**AI SaaS Platform**
-- Website: https://ai-saas-platform.com
-- Email: support@ai-saas-platform.com
+This software is distributed under the terms of the MIT License. For more info, please view the [LICENSE](LICENSE) file.
 
 ---
 
 <div align="center">
-  <p>⭐ Agar foydali bo'lsa, yulduz qo'yishni unutmang!</p>
-  <p>Made with ❤️ and AI</p>
+  <p>⭐ If you find this platform helpful, please give the repository a star!</p>
+  <p>Created with ❤️ by Antigravity</p>
 </div>
